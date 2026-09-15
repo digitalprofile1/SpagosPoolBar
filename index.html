@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spagos Pool Bar — Hotel Argana, Agadir</title>
+<link rel="icon" href="images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bronze-deep: #2a1810;
+    --bronze-mid: #3d2417;
+    --bronze-light: #5a3a26;
+    --gold: #cfa15e;
+    --gold-bright: #e8c584;
+    --sand: #ece0c8;
+    --teal: #2f5b57;
+    --line: rgba(207,161,94,0.28);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(207,161,94,0.10), transparent 60%),
+      linear-gradient(180deg, var(--bronze-deep) 0%, #201209 100%);
+    color: var(--sand);
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page{
+    width: 100%;
+    max-width: 560px;
+    padding: 56px 28px 40px;
+  }
+
+  /* ---- Hero ---- */
+  .hero{
+    text-align: center;
+    opacity: 0;
+    animation: rise 0.9s ease-out forwards;
+  }
+
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero{ animation: none; opacity: 1; }
+  }
+
+  .logo{
+    width: 220px;
+    height: auto;
+    border-radius: 100px;
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.55));
+  }
+
+  .tagline{
+    margin: 22px 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-bright);
+    letter-spacing: 0.02em;
+  }
+
+  .location-line{
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: rgba(236,224,200,0.62);
+  }
+
+  .description{
+    max-width: 400px;
+    margin: 22px auto 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(236,224,200,0.75);
+  }
+
+  /* ---- Divider ---- */
+  .divider{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 32px;
+  }
+  .divider::before, .divider::after{
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+  }
+  .divider svg{ flex-shrink: 0; opacity: 0.85; }
+
+  /* ---- Plaques (link items) ---- */
+  .plaque{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    background: linear-gradient(180deg, var(--bronze-mid), var(--bronze-deep));
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--sand);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .plaque:hover{
+    border-color: var(--gold);
+    background: linear-gradient(180deg, var(--bronze-light), var(--bronze-mid));
+  }
+  .plaque:focus-visible{
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 2px;
+  }
+
+  .plaque .icon{
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    color: var(--gold);
+  }
+
+  .plaque .text{ flex: 1; min-width: 0; }
+
+  .plaque .label{
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--sand);
+  }
+
+  .plaque .sub{
+    display: block;
+    font-size: 12.5px;
+    color: rgba(236,224,200,0.55);
+    margin-top: 2px;
+  }
+
+  .plaque .arrow{
+    flex-shrink: 0;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* primary plaque (WhatsApp) gets slight emphasis */
+  .plaque.primary{
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #4a3018, var(--bronze-mid));
+  }
+
+  /* ---- Address block ---- */
+  .address-block{
+    text-align: center;
+    padding: 26px 22px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .address-block .eyebrow{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--gold-bright);
+    margin: 0 0 10px;
+  }
+
+  .address-block address{
+    font-style: normal;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(236,224,200,0.85);
+    margin: 0 0 16px;
+  }
+
+  .map-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .map-link:hover{ color: var(--gold-bright); border-color: var(--gold); }
+
+  /* ---- Footer ---- */
+  footer{
+    text-align: center;
+    margin-top: 44px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: rgba(236,224,200,0.4);
+  }
+
+  @media (max-width: 380px){
+    .page{ padding: 40px 18px 32px; }
+    .logo{ width: 180px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <img class="logo" src="images/logo.png" alt="Spagos Pool Bar">
+    <p class="tagline">Poolside, always</p>
+    <p class="location-line">Hotel Argana · Agadir</p>
+    <p class="description">Loungers by day, cocktails by sunset. Spagos is Agadir's poolside spot for easy afternoons and warm evenings by the water.</p>
+  </div>
+
+  <div class="divider">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L8.5 5.5L14 7L8.5 8.5L7 14L5.5 8.5L0 7L5.5 5.5L7 0Z" fill="#cfa15e"/></svg>
+  </div>
+
+  <nav aria-label="Quick links">
+
+    <a class="plaque" href="https://ugc.production.linktr.ee/fc33d345-27ac-4e6e-bbc8-d9fcd4a3b32f_MENU-SPAGOS-POOL-BAR.pdf" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"/><path d="M14 2v5h5"/><path d="M8 13h8M8 17h8M8 9h3"/></svg>
+      <span class="text">
+        <span class="label">View the menu</span>
+        <span class="sub">Cocktails, bites &amp; more — PDF</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+    <a class="plaque primary" href="https://api.whatsapp.com/send?phone=212660651310" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.09c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.3-1.64-.59-2.88-1.24-4.76-4.15-4.9-4.34-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.11.07.65-.17 1.33z"/></svg>
+      <span class="text">
+        <span class="label">Reserve on WhatsApp</span>
+        <span class="sub">+212 660 651 310</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+    <a class="plaque" download="Spagos Pool Bar.vcf" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ASpagos%20Pool%20Bar%0AORG%3ASpagos%20Pool%20Bar%0ATEL%3BTYPE%3DCELL%3A%2B212660651310%0AEND%3AVCARD">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      <span class="text">
+        <span class="label">Save contact</span>
+        <span class="sub">Add Spagos Pool Bar to your phone</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+    <a class="plaque" href="https://www.instagram.com/spagospoolbar" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      <span class="text">
+        <span class="label">Instagram</span>
+        <span class="sub">@spagospoolbar</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+    <a class="plaque" href="https://web.facebook.com/SpagosPoolBarHotelArgana" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 8h-2a2 2 0 00-2 2v3H9v3h2v6h3v-6h2.2l.8-3H14v-2.4c0-.6.4-.9 1-.9h1.5V8z"/></svg>
+      <span class="text">
+        <span class="label">Facebook</span>
+        <span class="sub">Spagos Pool Bar Hotel Argana</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+    <a class="plaque" href="https://www.tiktok.com/@spagos.pool.bar.agadir" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v9.6a2.6 2.6 0 11-2-2.53V8a4.6 4.6 0 104.6 4.6V9.2a5.9 5.9 0 003.4 1.1V8.2A3.9 3.9 0 0117 4.4V3h-3z"/></svg>
+      <span class="text">
+        <span class="label">TikTok</span>
+        <span class="sub">@spagos.pool.bar.agadir</span>
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+
+  </nav>
+
+  <div class="address-block">
+    <p class="eyebrow">Find us</p>
+    <address>
+      Hotel Argana, B.P. 93<br>
+      Boulevard Mohamed V, Agadir
+    </address>
+    <a class="map-link" href="https://maps.app.goo.gl/Y2vZwYxCimaLA7PX6" target="_blank" rel="noopener">
+      Open in Google Maps
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </a>
+  </div>
+
+  <footer>
+    Spagos Pool Bar · Hotel Argana, Agadir
+  </footer>
+
+</div>
+</body>
+</html>
