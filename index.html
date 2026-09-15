@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,18 @@
 <link rel="icon" href="images/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bronze-deep: #2a1810;
-    --bronze-mid: #3d2417;
-    --bronze-light: #5a3a26;
-    --gold: #cfa15e;
-    --gold-bright: #e8c584;
-    --sand: #ece0c8;
-    --teal: #2f5b57;
-    --line: rgba(207,161,94,0.28);
+    --bronze-mid: #4a3018;
+    --gold: #b8874a;
+    --gold-deep: #8f6432;
+    --paper: #ffffff;
+    --paper-soft: #faf7f2;
+    --ink: #2a2018;
+    --ink-soft: #746657;
+    --line: #e7ddcd;
   }
 
   *{ box-sizing: border-box; }
@@ -28,19 +29,56 @@
     margin: 0;
     min-height: 100vh;
     background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(207,161,94,0.10), transparent 60%),
-      linear-gradient(180deg, var(--bronze-deep) 0%, #201209 100%);
-    color: var(--sand);
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(184,135,74,0.08), transparent 60%),
+      var(--paper);
+    color: var(--ink);
     font-family: 'Jost', sans-serif;
     display: flex;
     justify-content: center;
     -webkit-font-smoothing: antialiased;
   }
 
+  body.lang-ar{
+    font-family: 'Tajawal', sans-serif;
+  }
+
   .page{
     width: 100%;
     max-width: 560px;
-    padding: 56px 28px 40px;
+    padding: 28px 28px 40px;
+  }
+
+  /* ---- Language switch ---- */
+  .lang-switch{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .lang-btn{
+    appearance: none;
+    border: 1px solid var(--line);
+    background: var(--paper-soft);
+    color: var(--ink-soft);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  .lang-btn:hover{
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .lang-btn.active{
+    border-color: var(--gold-deep);
+    background: var(--gold-deep);
+    color: #fff;
   }
 
   /* ---- Hero ---- */
@@ -63,7 +101,7 @@
     width: 220px;
     height: auto;
     border-radius: 100px;
-    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.55));
+    filter: drop-shadow(0 14px 28px rgba(42,24,16,0.16));
   }
 
   .tagline{
@@ -72,15 +110,21 @@
     font-size: 26px;
     font-style: italic;
     font-weight: 500;
-    color: var(--gold-bright);
+    color: var(--gold-deep);
     letter-spacing: 0.02em;
+  }
+
+  body.lang-ar .tagline{
+    font-family: 'Tajawal', sans-serif;
+    font-style: normal;
+    font-weight: 700;
   }
 
   .location-line{
     margin: 0;
     font-size: 14px;
     letter-spacing: 0.04em;
-    color: rgba(236,224,200,0.62);
+    color: var(--ink-soft);
   }
 
   .description{
@@ -88,7 +132,7 @@
     margin: 22px auto 0;
     font-size: 15px;
     line-height: 1.7;
-    color: rgba(236,224,200,0.75);
+    color: var(--ink-soft);
   }
 
   /* ---- Divider ---- */
@@ -104,7 +148,7 @@
     flex: 1;
     background: linear-gradient(90deg, transparent, var(--line), transparent);
   }
-  .divider svg{ flex-shrink: 0; opacity: 0.85; }
+  .divider svg{ flex-shrink: 0; opacity: 0.9; }
 
   /* ---- Plaques (link items) ---- */
   .plaque{
@@ -113,19 +157,20 @@
     gap: 16px;
     padding: 18px 20px;
     margin-bottom: 14px;
-    background: linear-gradient(180deg, var(--bronze-mid), var(--bronze-deep));
+    background: var(--paper-soft);
     border: 1px solid var(--line);
     border-radius: 3px;
     text-decoration: none;
-    color: var(--sand);
-    transition: border-color 0.2s ease, background 0.2s ease;
+    color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
   .plaque:hover{
     border-color: var(--gold);
-    background: linear-gradient(180deg, var(--bronze-light), var(--bronze-mid));
+    box-shadow: 0 8px 22px rgba(42,24,16,0.08);
+    transform: translateY(-1px);
   }
   .plaque:focus-visible{
-    outline: 2px solid var(--gold-bright);
+    outline: 2px solid var(--gold-deep);
     outline-offset: 2px;
   }
 
@@ -133,7 +178,7 @@
     flex-shrink: 0;
     width: 22px;
     height: 22px;
-    color: var(--gold);
+    color: var(--gold-deep);
   }
 
   .plaque .text{ flex: 1; min-width: 0; }
@@ -142,26 +187,30 @@
     display: block;
     font-size: 16px;
     font-weight: 500;
-    color: var(--sand);
+    color: var(--ink);
   }
 
   .plaque .sub{
     display: block;
     font-size: 12.5px;
-    color: rgba(236,224,200,0.55);
+    color: var(--ink-soft);
     margin-top: 2px;
   }
 
   .plaque .arrow{
     flex-shrink: 0;
-    color: var(--gold);
+    color: var(--gold-deep);
     opacity: 0.7;
+  }
+
+  body.lang-ar .plaque .arrow{
+    transform: scaleX(-1);
   }
 
   /* primary plaque (WhatsApp) gets slight emphasis */
   .plaque.primary{
     border-color: var(--gold);
-    background: linear-gradient(180deg, #4a3018, var(--bronze-mid));
+    background: linear-gradient(180deg, #fbf1de, var(--paper-soft));
   }
 
   /* ---- Address block ---- */
@@ -170,22 +219,28 @@
     padding: 26px 22px;
     border: 1px solid var(--line);
     border-radius: 3px;
-    background: rgba(0,0,0,0.15);
+    background: var(--paper-soft);
   }
 
   .address-block .eyebrow{
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 19px;
-    color: var(--gold-bright);
+    color: var(--gold-deep);
     margin: 0 0 10px;
+  }
+
+  body.lang-ar .address-block .eyebrow{
+    font-family: 'Tajawal', sans-serif;
+    font-style: normal;
+    font-weight: 700;
   }
 
   .address-block address{
     font-style: normal;
     font-size: 14.5px;
     line-height: 1.7;
-    color: rgba(236,224,200,0.85);
+    color: var(--ink);
     margin: 0 0 16px;
   }
 
@@ -194,13 +249,13 @@
     align-items: center;
     gap: 8px;
     font-size: 13.5px;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-decoration: none;
     border-bottom: 1px solid var(--line);
     padding-bottom: 2px;
     transition: color 0.2s ease, border-color 0.2s ease;
   }
-  .map-link:hover{ color: var(--gold-bright); border-color: var(--gold); }
+  .map-link:hover{ color: var(--bronze-mid); border-color: var(--gold); }
 
   /* ---- Footer ---- */
   footer{
@@ -208,27 +263,33 @@
     margin-top: 44px;
     font-size: 12px;
     letter-spacing: 0.03em;
-    color: rgba(236,224,200,0.4);
+    color: #b6a891;
   }
 
   @media (max-width: 380px){
-    .page{ padding: 40px 18px 32px; }
+    .page{ padding: 24px 18px 32px; }
     .logo{ width: 180px; }
   }
 </style>
 </head>
-<body>
+<body class="lang-fr">
 <div class="page">
+
+  <div class="lang-switch" role="group" aria-label="Language / Langue / اللغة">
+    <button type="button" class="lang-btn active" data-lang="fr">FR</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+    <button type="button" class="lang-btn" data-lang="ar">AR</button>
+  </div>
 
   <div class="hero">
     <img class="logo" src="images/logo.png" alt="Spagos Pool Bar">
-    <p class="tagline">Poolside, always</p>
-    <p class="location-line">Hotel Argana · Agadir</p>
-    <p class="description">Loungers by day, cocktails by sunset. Spagos is Agadir's poolside spot for easy afternoons and warm evenings by the water.</p>
+    <p class="tagline" data-i18n="tagline">Au bord de la piscine, toujours</p>
+    <p class="location-line" data-i18n="location">Hôtel Argana · Agadir</p>
+    <p class="description" data-i18n="description">Transats le jour, cocktails au coucher du soleil. Spagos est l'adresse d'Agadir pour des après-midis tranquilles et des soirées chaleureuses au bord de l'eau.</p>
   </div>
 
   <div class="divider">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L8.5 5.5L14 7L8.5 8.5L7 14L5.5 8.5L0 7L5.5 5.5L7 0Z" fill="#cfa15e"/></svg>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L8.5 5.5L14 7L8.5 8.5L7 14L5.5 8.5L0 7L5.5 5.5L7 0Z" fill="#b8874a"/></svg>
   </div>
 
   <nav aria-label="Quick links">
@@ -236,8 +297,8 @@
     <a class="plaque" href="https://ugc.production.linktr.ee/fc33d345-27ac-4e6e-bbc8-d9fcd4a3b32f_MENU-SPAGOS-POOL-BAR.pdf" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"/><path d="M14 2v5h5"/><path d="M8 13h8M8 17h8M8 9h3"/></svg>
       <span class="text">
-        <span class="label">View the menu</span>
-        <span class="sub">Cocktails, bites &amp; more — PDF</span>
+        <span class="label" data-i18n="menuLabel">Voir le menu</span>
+        <span class="sub" data-i18n="menuSub">Cocktails, tapas &amp; plus — PDF</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
     </a>
@@ -245,17 +306,17 @@
     <a class="plaque primary" href="https://api.whatsapp.com/send?phone=212660651310" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.09c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.3-1.64-.59-2.88-1.24-4.76-4.15-4.9-4.34-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.11.07.65-.17 1.33z"/></svg>
       <span class="text">
-        <span class="label">Reserve on WhatsApp</span>
+        <span class="label" data-i18n="whatsappLabel">Réserver sur WhatsApp</span>
         <span class="sub">+212 660 651 310</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
     </a>
 
-    <a class="plaque" download="Spagos Pool Bar.vcf" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ASpagos%20Pool%20Bar%0AORG%3ASpagos%20Pool%20Bar%0ATEL%3BTYPE%3DCELL%3A%2B212660651310%0AEND%3AVCARD">
+    <a class="plaque" id="saveContactBtn" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ASpagos%20Pool%20Bar%0AORG%3ASpagos%20Pool%20Bar%0ATEL%3BTYPE%3DCELL%3A%2B212660651310%0AEND%3AVCARD" download="Spagos Pool Bar.vcf">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
       <span class="text">
-        <span class="label">Save contact</span>
-        <span class="sub">Add Spagos Pool Bar to your phone</span>
+        <span class="label" data-i18n="saveLabel">Enregistrer le contact</span>
+        <span class="sub" data-i18n="saveSub">Ajoutez Spagos Pool Bar à vos contacts</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
     </a>
@@ -263,7 +324,7 @@
     <a class="plaque" href="https://www.instagram.com/spagospoolbar" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
       <span class="text">
-        <span class="label">Instagram</span>
+        <span class="label" data-i18n="instaLabel">Instagram</span>
         <span class="sub">@spagospoolbar</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
@@ -272,7 +333,7 @@
     <a class="plaque" href="https://web.facebook.com/SpagosPoolBarHotelArgana" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 8h-2a2 2 0 00-2 2v3H9v3h2v6h3v-6h2.2l.8-3H14v-2.4c0-.6.4-.9 1-.9h1.5V8z"/></svg>
       <span class="text">
-        <span class="label">Facebook</span>
+        <span class="label" data-i18n="fbLabel">Facebook</span>
         <span class="sub">Spagos Pool Bar Hotel Argana</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
@@ -281,7 +342,7 @@
     <a class="plaque" href="https://www.tiktok.com/@spagos.pool.bar.agadir" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v9.6a2.6 2.6 0 11-2-2.53V8a4.6 4.6 0 104.6 4.6V9.2a5.9 5.9 0 003.4 1.1V8.2A3.9 3.9 0 0117 4.4V3h-3z"/></svg>
       <span class="text">
-        <span class="label">TikTok</span>
+        <span class="label" data-i18n="tiktokLabel">TikTok</span>
         <span class="sub">@spagos.pool.bar.agadir</span>
       </span>
       <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
@@ -290,21 +351,141 @@
   </nav>
 
   <div class="address-block">
-    <p class="eyebrow">Find us</p>
+    <p class="eyebrow" data-i18n="findUs">Nous trouver</p>
     <address>
-      Hotel Argana, B.P. 93<br>
-      Boulevard Mohamed V, Agadir
+      <span data-i18n="addressLine1">Hôtel Argana, B.P. 93</span><br>
+      <span data-i18n="addressLine2">Boulevard Mohamed V, Agadir</span>
     </address>
     <a class="map-link" href="https://maps.app.goo.gl/Y2vZwYxCimaLA7PX6" target="_blank" rel="noopener">
-      Open in Google Maps
+      <span data-i18n="mapLink">Ouvrir dans Google Maps</span>
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
     </a>
   </div>
 
-  <footer>
-    Spagos Pool Bar · Hotel Argana, Agadir
+  <footer data-i18n="footer">
+    Spagos Pool Bar · Hôtel Argana, Agadir
   </footer>
 
 </div>
+
+<script>
+  const translations = {
+    fr: {
+      tagline: "Au bord de la piscine, toujours",
+      location: "Hôtel Argana · Agadir",
+      description: "Transats le jour, cocktails au coucher du soleil. Spagos est l'adresse d'Agadir pour des après-midis tranquilles et des soirées chaleureuses au bord de l'eau.",
+      menuLabel: "Voir le menu",
+      menuSub: "Cocktails, tapas & plus — PDF",
+      whatsappLabel: "Réserver sur WhatsApp",
+      saveLabel: "Enregistrer le contact",
+      saveSub: "Ajoutez Spagos Pool Bar à vos contacts",
+      instaLabel: "Instagram",
+      fbLabel: "Facebook",
+      tiktokLabel: "TikTok",
+      findUs: "Nous trouver",
+      addressLine1: "Hôtel Argana, B.P. 93",
+      addressLine2: "Boulevard Mohamed V, Agadir",
+      mapLink: "Ouvrir dans Google Maps",
+      footer: "Spagos Pool Bar · Hôtel Argana, Agadir"
+    },
+    en: {
+      tagline: "Poolside, always",
+      location: "Hotel Argana · Agadir",
+      description: "Loungers by day, cocktails by sunset. Spagos is Agadir's poolside spot for easy afternoons and warm evenings by the water.",
+      menuLabel: "View the menu",
+      menuSub: "Cocktails, bites & more — PDF",
+      whatsappLabel: "Reserve on WhatsApp",
+      saveLabel: "Save contact",
+      saveSub: "Add Spagos Pool Bar to your phone",
+      instaLabel: "Instagram",
+      fbLabel: "Facebook",
+      tiktokLabel: "TikTok",
+      findUs: "Find us",
+      addressLine1: "Hotel Argana, B.P. 93",
+      addressLine2: "Boulevard Mohamed V, Agadir",
+      mapLink: "Open in Google Maps",
+      footer: "Spagos Pool Bar · Hotel Argana, Agadir"
+    },
+    ar: {
+      tagline: "دائمًا بجانب المسبح",
+      location: "فندق أرڭانا · أكادير",
+      description: "كراسي استلقاء نهارًا، وكوكتيلات عند الغروب. سباڭوس هي وجهة أكادير لقضاء بعد ظهر هادئ وأمسيات دافئة على حافة الماء.",
+      menuLabel: "عرض القائمة",
+      menuSub: "كوكتيلات ووجبات خفيفة والمزيد — PDF",
+      whatsappLabel: "احجز عبر واتساب",
+      saveLabel: "حفظ جهة الاتصال",
+      saveSub: "أضيفوا Spagos Pool Bar إلى جهات اتصالكم",
+      instaLabel: "إنستغرام",
+      fbLabel: "فيسبوك",
+      tiktokLabel: "تيك توك",
+      findUs: "موقعنا",
+      addressLine1: "فندق أرڭانا، ب.ب 93",
+      addressLine2: "شارع محمد الخامس، أكادير",
+      mapLink: "افتح في خرائط ڭوڭل",
+      footer: "سباڭوس بول بار · فندق أرڭانا، أكادير"
+    }
+  };
+
+  function setLanguage(lang){
+    const dict = translations[lang] || translations.fr;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if(dict[key]) el.textContent = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.classList.remove('lang-fr','lang-en','lang-ar');
+    document.body.classList.add('lang-' + lang);
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('spagos-lang', lang); }catch(e){}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setLanguage(btn.getAttribute('data-lang'));
+    });
+  });
+
+  // Save Contact: build the vCard as a Blob for a more reliable
+  // "open in Contacts" prompt on iOS/Android than a plain data: link.
+  (function(){
+    var btn = document.getElementById('saveContactBtn');
+    if(!btn) return;
+    btn.addEventListener('click', function(e){
+      try{
+        var vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Spagos Pool Bar',
+          'ORG:Spagos Pool Bar',
+          'TEL;TYPE=CELL:+212660651310',
+          'END:VCARD'
+        ].join('\r\n');
+        var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        e.preventDefault();
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'Spagos Pool Bar.vcf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+      }catch(err){
+        // If Blob/JS fails for any reason, fall back to the plain
+        // data: URI already set on the href attribute.
+      }
+    });
+  })();
+
+  (function(){
+    var saved = null;
+    try{ saved = localStorage.getItem('spagos-lang'); }catch(e){}
+    if(saved && translations[saved]) setLanguage(saved);
+  })();
+</script>
+
 </body>
 </html>
